@@ -4,37 +4,27 @@ namespace HaaardWork
 {
     internal class Program
     {
-        public static bool IsPrime(int n)
+        public static int SumOfDigits(int num)
         {
-            bool answer = false;
-            int b = 0;
-            for (int i = 2; i < n; i++)
+            int answer = 0;
+            while (true)
             {
-                if (n % i == 0)
+                answer += num % 10;
+                num /= 10;
+                if (num <= 0)
                 {
-                    b++;
+                    break;
                 }
-            }
-            if (b == 0)
-            {
-                answer = true;
-            }
-            else
-            {
-                answer = false;
             }
             return answer;
         }
 
-
         static void Main(string[] args)
         {
-            //주어진 숫자가 소수인지 판별하는 solution을 완성하라
-            int a = 17;
-            int b = 4;
-            Console.WriteLine(IsPrime(a));
-            Console.WriteLine(IsPrime(b));
-            //true, false
+            //주어진 숫자의 양의 정수의 각 자리수의 합을 구하는 solution을 완성하라
+            int a = 1521344589;
+            Console.WriteLine(SumOfDigits(a));
+            //42
         }
     }
 }
