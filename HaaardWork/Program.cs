@@ -4,19 +4,37 @@ namespace HaaardWork
 {
     internal class Program
     {
-        public static int WordCheck(string String)
+        public static bool IsPrime(int n)
         {
-            MatchCollection matches = Regex.Matches(String, " ");  //구글링
-
-            int answer = matches.Count + 1;
+            bool answer = false;
+            int b = 0;
+            for (int i = 2; i < n; i++)
+            {
+                if (n % i == 0)
+                {
+                    b++;
+                }
+            }
+            if (b == 0)
+            {
+                answer = true;
+            }
+            else
+            {
+                answer = false;
+            }
             return answer;
         }
 
+
         static void Main(string[] args)
         {
-            //문자열을 입력받으면 단어의 갯수를 출력하기
-            Console.WriteLine(WordCheck("안녕하세요. 나는 시흥시에 사는 라스라고 합니다."));
-            //6
+            //주어진 숫자가 소수인지 판별하는 solution을 완성하라
+            int a = 17;
+            int b = 4;
+            Console.WriteLine(IsPrime(a));
+            Console.WriteLine(IsPrime(b));
+            //true, false
         }
     }
 }
