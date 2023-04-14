@@ -4,45 +4,65 @@ namespace HaaardWork
 {
     internal class Program
     {
-        public static int[] FindCommonItem(int[] arr1, int[] arr2, int[] arr3)
-        {
-            int[] arr0 = { };
-            int a = 0;
-            for (int i = 0; i < arr1.Length; i++)
-            {
-                for (int j = 0; j < arr2.Length; j++)
-                {
-                    for (int k = 0; k < arr3.Length; k++)
-                    {
-                        if (arr3[k] == arr2[j])
-                        {
-                            if (arr3[k] == arr1[i])
-                            {
-                                Array.Resize(ref arr0, a + 1);
-                                arr0[a] = arr3[k];
-                                a++;
-                            }
-                        }
-                    }
-                }
-            }
-            int[] answer = arr0.Distinct().ToArray();
-            return answer;
-        }
-
-
         static void Main(string[] args)
         {
-            //k개이 정렬된 배열에서 공통항목을 찾는 solution을 완성하라. 단 중복은 혀용하지 않는다.
-            int[] a = { 4,5,6,2,1,6,7,35,53,91,69};
-            int[] b = {35,7,7,9,90,123,35,45,74 };
-            int[] c = {35,7,45,123,123456789 };
-            int[] d = FindCommonItem(a, b, c);
-            foreach(int i in d)
+            int count = 10;
+            Random random = new Random();
+            int answer = random.Next(0, 999);
+            Console.WriteLine("업다운 게임 시작합니다! ");
+            Console.WriteLine("10번안에 맞추셔야 합니다.");
+
+            while (true)
             {
-                Console.WriteLine(i);
+                count--;
+                Console.WriteLine("\n정답을 맞춰주세요 : ");
+                int useranswer = int.Parse(Console.ReadLine());
+                CompareAnswer(answer, useranswer);
+                if (GameSet(answer, useranswer, count))
+                {
+                    if (AskUser(ref count, ref answer, random))
+                    {
+                        break;
+                    }
+                }
+                Console.WriteLine("\n{0}회 남았습니다. ", count);
             }
-            //7, 35
+        }
+        static void CompareAnswer(int answer, int useranswer)
+        {
+            if (answer == useranswer)
+            {
+                Console.WriteLine("정답입니다!");
+            }
+            else if (answer > useranswer)
+            {
+                Console.WriteLine("보다 큽습니다.");
+            }
+            else { Console.WriteLine("보다 작습니다."); }
+        }
+        static bool GameSet(int answer, int useranswer, int count)
+        {
+            if (answer == useranswer)
+            {
+                return true;
+            }
+            else if (count == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        static bool AskUser(ref int count, ref int answer, Random random)
+        {
+            Console.WriteLine("\n\n실패하셨습니다. \n다시 시작하기를 윈하시면 F를 눌러주세요.");
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.F)
+            {
+                count = 10;
+                answer = random.Next(0, 999);
+                return false;
+            }
+            return true;
         }
     }
 }
