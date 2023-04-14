@@ -1,26 +1,22 @@
-﻿namespace HaaardWork
+﻿using System.Text.RegularExpressions;
+
+namespace HaaardWork
 {
     internal class Program
     {
-        class MyClass
+        public static int WordCheck(string String)
         {
-            public int a;
-            public int b;
+            MatchCollection matches = Regex.Matches(String, " ");  //구글링
+
+            int answer = matches.Count + 1;
+            return answer;
         }
+
         static void Main(string[] args)
         {
-            //다음과 같은 코드가 있다고 가정할 때 출력결과와 그 이유를 서술하라
-            MyClass source = new MyClass();
-            source.a = 10;
-            source.b = 20;
-
-            MyClass target = source;
-            target.b = 100;
-
-            Console.WriteLine("{0}, {1}", source.a, source.b); 
-            Console.WriteLine("{0}, {1}", target.a, target.b);
-            //10 100
-            //10 100
+            //문자열을 입력받으면 단어의 갯수를 출력하기
+            Console.WriteLine(WordCheck("안녕하세요. 나는 시흥시에 사는 라스라고 합니다."));
+            //6
         }
     }
 }
