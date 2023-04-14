@@ -4,12 +4,10 @@
     {
         static void Main(string[] args)
         {
-            //a와 b의 값 찾기
-            int a = 32 >> 1;
-            int b = a >> 3;
-
+            //다음 코드에서 a는 어떤 값을 가지는가?
+            int a = 0xF0 | 0x0F;
             Console.WriteLine(a);
-            Console.WriteLine(b);
+            //64
         }
     }
 }
